@@ -4,6 +4,7 @@ document.documentElement.classList.add('has-js');
 document.addEventListener('DOMContentLoaded', () => {
   initDownloadConfig();
   initHeaderScroll();
+  initMobileNav();
   initScrollReveal();
   initScrollProgressBar();
   initScrollSpy();
@@ -106,6 +107,17 @@ function initFaqAccordion() {
       }
     });
   });
+
+  // Recalibra dinamicamente a altura máxima caso a janela mude de dimensão ou orientação
+  window.addEventListener('resize', () => {
+    const activeItem = document.querySelector('.faq-item.active');
+    if (activeItem) {
+      const activeAnswer = activeItem.querySelector('.faq-answer');
+      if (activeAnswer) {
+        activeAnswer.style.maxHeight = activeAnswer.scrollHeight + 'px';
+      }
+    }
+  }, { passive: true });
 }
 
 /**
@@ -224,7 +236,7 @@ function initScrollProgressBar() {
  */
 function initScrollSpy() {
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .mobile-nav-links a[href^="#"]');
   if (!sections.length || !navLinks.length) return;
 
   const handleScrollspy = () => {
@@ -288,4 +300,72 @@ function initScrollToTop() {
     });
   });
 }
+
+/**
+ * 10. Menu de Navegação Mobile (Gaveta / Drawer Acessível)
+ */
+function initMobileNav() {
+  const toggleBtn = document.getElementById('mobile-toggle');
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const backdrop = document.getElementById('mobile-nav-backdrop');
+  const header = document.getElementById('site-header');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-nav-actions a');
+
+  if (!toggleBtn || !drawer || !backdrop) return;
+
+  const openMenu = () => {
+    toggleBtn.classList.add('is-active');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('is-open');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('is-active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    if (header) header.classList.add('menu-open');
+    document.body.classList.add('mobile-menu-active');
+  };
+
+  const closeMenu = () => {
+    toggleBtn.classList.remove('is-active');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('is-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('is-active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    if (header) header.classList.remove('menu-open');
+    document.body.classList.remove('mobile-menu-active');
+  };
+
+  const toggleMenu = () => {
+    const isOpen = drawer.classList.contains('is-open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  };
+
+  toggleBtn.addEventListener('click', toggleMenu);
+  backdrop.addEventListener('click', closeMenu);
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+
+  // Fecha com a tecla Escape para total conformidade de acessibilidade
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+      closeMenu();
+    }
+  });
+
+  // Fecha e redefine classes caso a janela seja redimensionada para desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && drawer.classList.contains('is-open')) {
+      closeMenu();
+    }
+  }, { passive: true });
+}
+
 
