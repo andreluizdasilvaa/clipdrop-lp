@@ -34,6 +34,7 @@
 
   <!-- Estilos Customizados -->
   <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('has-js');</script>
 </head>
 <body>
 
@@ -41,6 +42,7 @@
        1. CABEÇALHO / HEADER MINIMALISTA
        ======================================================================== -->
   <header class="site-header" id="site-header">
+    <div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
     <div class="container header-container">
       <a href="#" class="brand" aria-label="ClipDrop Início">
         <img src="assets/logos/logo_sem_fundo_com_texto.png" alt="ClipDrop" class="brand-logo" width="138" height="34">
@@ -76,22 +78,22 @@
     <section class="section hero-section" id="hero">
       <div class="container">
         <div class="hero-content">
-          <div class="hero-badge-wrap">
+          <div class="hero-badge-wrap reveal reveal-up">
             <span class="badge badge-subtle">
               <span class="badge-dot"></span>
               100% Gratuito & Livre
             </span>
           </div>
 
-          <h1 class="hero-title">
+          <h1 class="hero-title reveal reveal-up delay-100">
             Interface desktop moderna para extração e conversão de mídia.
           </h1>
 
-          <p class="hero-subtitle">
+          <p class="hero-subtitle reveal reveal-up delay-200">
             Extraia áudios e vídeos de mais de 1.800 plataformas com o poder do yt-dlp e FFmpeg em uma experiência Zero-Config pura e fluida.
           </p>
 
-          <div class="hero-cta-group">
+          <div class="hero-cta-group reveal reveal-up delay-300">
             <div class="hero-cta-buttons">
               <a href="https://github.com/andreluizdasilvaa/clipdrop/releases/download/v1.0.0/ClipDrop.Setup.1.0.0.exe" class="btn btn-primary btn-lg" id="hero-download-btn" data-download-platform="windows" download>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -109,7 +111,7 @@
 
         <!-- WORKFLOW SHOWCASE (FLUXO OPERACIONAL EM 3 ETAPAS) -->
         <div class="hero-showcase">
-          <div class="showcase-metrics-bar">
+          <div class="showcase-metrics-bar reveal reveal-up delay-300">
             <div class="metric-item">
               <span class="metric-val">1.800+</span>
               <span class="metric-lbl">Plataformas Suportadas</span>
@@ -132,7 +134,7 @@
           </div>
 
           <div class="workflow-steps-grid">
-            <div class="workflow-card">
+            <div class="workflow-card reveal reveal-up delay-100">
               <div class="workflow-card-header">
                 <span class="workflow-step-num">01</span>
                 <div class="workflow-icon">
@@ -146,7 +148,7 @@
               <p>Cole a URL de qualquer vídeo, áudio, transmissão ou playlist inteira. O ClipDrop reconhece a origem e obtém os streams rapidamente.</p>
             </div>
 
-            <div class="workflow-card">
+            <div class="workflow-card reveal reveal-up delay-200">
               <div class="workflow-card-header">
                 <span class="workflow-step-num">02</span>
                 <div class="workflow-icon">
@@ -160,7 +162,7 @@
               <p>Escolha áudio de alta fidelidade (MP3/FLAC com injeção de capa e ID3) ou vídeo até 4K. Opcionalmente defina trechos exatos de corte (Trim).</p>
             </div>
 
-            <div class="workflow-card">
+            <div class="workflow-card reveal reveal-up delay-300">
               <div class="workflow-card-header">
                 <span class="workflow-step-num">03</span>
                 <div class="workflow-icon">
@@ -183,7 +185,7 @@
     <section class="section architecture-section" id="arquitetura">
       <div class="container">
         <div class="architecture-split">
-          <div class="architecture-lead">
+          <div class="architecture-lead reveal reveal-left">
             <span class="badge badge-support section-tag">Zero-Config</span>
             <h2>Sem terminal. Sem Python. Sem dores de cabeça.</h2>
             <p>
@@ -194,7 +196,7 @@
             </p>
 
             <ul class="features-check-list">
-              <li class="features-check-item">
+              <li class="features-check-item reveal reveal-up delay-100">
                 <div class="check-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"/>
@@ -205,7 +207,7 @@
                   <p>Não modifica o seu sistema nem interfere em outras versões do Python ou FFmpeg já instaladas.</p>
                 </div>
               </li>
-              <li class="features-check-item">
+              <li class="features-check-item reveal reveal-up delay-200">
                 <div class="check-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"/>
@@ -216,7 +218,7 @@
                   <p>Compatível nativamente com YouTube, TikTok, Instagram, Twitter/X, Twitch, SoundCloud, Vimeo e centenas de outros.</p>
                 </div>
               </li>
-              <li class="features-check-item">
+              <li class="features-check-item reveal reveal-up delay-300">
                 <div class="check-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"/>
@@ -231,7 +233,7 @@
           </div>
 
           <!-- Caixa Técnica Estilizada -->
-          <div class="tech-box">
+          <div class="tech-box reveal reveal-right delay-150">
             <div class="tech-box-header">
               <div class="tech-box-brand">
                 <img src="assets/logos/logo_sem_fundo_sem_texto.png" alt="ClipDrop" class="tech-box-logo" height="20">
@@ -244,22 +246,22 @@
               </div>
             </div>
 
-            <div class="tech-flow-step">
+            <div class="tech-flow-step reveal reveal-up delay-100">
               <div class="step-label">1. Validação & Extração de Streams</div>
               <div class="step-meta">Motor yt-dlp nativo</div>
             </div>
 
-            <div class="tech-flow-step active-step">
+            <div class="tech-flow-step active-step reveal reveal-up delay-200">
               <div class="step-label">2. Multiplexação & Conversão Sem Perdas</div>
               <div class="step-meta">FFmpeg Pipeline (Copy Stream)</div>
             </div>
 
-            <div class="tech-flow-step">
+            <div class="tech-flow-step reveal reveal-up delay-300">
               <div class="step-label">3. Injeção de Capa de Álbum & Tags ID3v2</div>
               <div class="step-meta">Atom / Mutagen automáticos</div>
             </div>
 
-            <div class="tech-flow-step">
+            <div class="tech-flow-step reveal reveal-up delay-400">
               <div class="step-label">4. Gravação na Pasta do Usuário</div>
               <div class="step-meta">Destino limpo e sem redundâncias</div>
             </div>
@@ -273,14 +275,14 @@
          ======================================================================== -->
     <section class="section" id="recursos">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <h2>Desenvolvido para máxima fidelidade e rapidez</h2>
           <p>Tudo o que você precisa em uma única janela limpa, sem anúncios ou assinaturas.</p>
         </div>
 
         <div class="features-grid">
           <!-- Card 1 -->
-          <article class="feature-card">
+          <article class="feature-card reveal reveal-up delay-100">
             <div class="feature-icon-wrapper">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="3"/>
@@ -292,7 +294,7 @@
           </article>
 
           <!-- Card 2 -->
-          <article class="feature-card">
+          <article class="feature-card reveal reveal-up delay-200">
             <div class="feature-icon-wrapper">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M9 18V5l12-2v13"/>
@@ -305,7 +307,7 @@
           </article>
 
           <!-- Card 3 -->
-          <article class="feature-card">
+          <article class="feature-card reveal reveal-up delay-300">
             <div class="feature-icon-wrapper">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="23 7 16 12 23 17 23 7"/>
@@ -317,7 +319,7 @@
           </article>
 
           <!-- Card 4 -->
-          <article class="feature-card">
+          <article class="feature-card reveal reveal-up delay-100">
             <div class="feature-icon-wrapper">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="6" cy="6" r="3"/>
@@ -332,7 +334,7 @@
           </article>
 
           <!-- Card 5 -->
-          <article class="feature-card">
+          <article class="feature-card reveal reveal-up delay-200">
             <div class="feature-icon-wrapper">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -344,7 +346,7 @@
           </article>
 
           <!-- Card 6 -->
-          <article class="feature-card">
+          <article class="feature-card reveal reveal-up delay-300">
             <div class="feature-icon-wrapper">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -362,7 +364,7 @@
          ======================================================================== -->
     <section class="section download-section" id="downloads">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <span class="badge badge-accent section-tag">Instalação</span>
           <h2>Escolha a sua plataforma</h2>
           <p>O ClipDrop é distribuído como executável independente. Livre de anúncios, adware ou instaladores secundários.</p>
@@ -370,7 +372,7 @@
 
         <div class="platforms-grid">
           <!-- CARD WINDOWS (ATIVO) -->
-          <div class="platform-card platform-active">
+          <div class="platform-card platform-active reveal reveal-scale delay-100">
             <span class="popular-tag">Disponível Agora</span>
             <div class="platform-card-header">
               <div class="platform-icon-box">
@@ -407,7 +409,7 @@
           </div>
 
           <!-- CARD LINUX (EM BREVE) -->
-          <div class="platform-card platform-disabled">
+          <div class="platform-card platform-disabled reveal reveal-up delay-200">
             <div class="platform-card-header">
               <div class="platform-icon-box">
                 <!-- Linux SVG Icon -->
@@ -433,7 +435,7 @@
           </div>
 
           <!-- CARD MACOS (EM BREVE) -->
-          <div class="platform-card platform-disabled">
+          <div class="platform-card platform-disabled reveal reveal-up delay-300">
             <div class="platform-card-header">
               <div class="platform-icon-box">
                 <!-- Apple SVG Icon -->
@@ -461,7 +463,7 @@
           </div>
         </div>
 
-        <div class="download-footer-note">
+        <div class="download-footer-note reveal reveal-up delay-150">
           <a href="https://github.com/andreluizdasilvaa/clipdrop" target="_blank" rel="noopener noreferrer" class="github-banner">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
@@ -480,7 +482,7 @@
          ======================================================================== -->
     <section class="section" id="faq">
       <div class="container container-narrow">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <span class="badge section-tag">Dúvidas Comuns</span>
           <h2>Perguntas Frequentes</h2>
           <p>Tudo o que você precisa saber sobre a arquitetura e funcionamento do ClipDrop.</p>
@@ -488,7 +490,7 @@
 
         <div class="faq-accordion">
           <!-- Item 1 -->
-          <div class="faq-item">
+          <div class="faq-item reveal reveal-up delay-100">
             <button type="button" class="faq-question" aria-expanded="false">
               <span>O ClipDrop é realmente gratuito e sem propagandas?</span>
               <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -504,7 +506,7 @@
           </div>
 
           <!-- Item 2 -->
-          <div class="faq-item">
+          <div class="faq-item reveal reveal-up delay-150">
             <button type="button" class="faq-question" aria-expanded="false">
               <span>Preciso instalar o Python, FFmpeg ou yt-dlp manualmente?</span>
               <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -520,7 +522,7 @@
           </div>
 
           <!-- Item 3 -->
-          <div class="faq-item">
+          <div class="faq-item reveal reveal-up delay-200">
             <button type="button" class="faq-question" aria-expanded="false">
               <span>Quais sites e serviços são suportados?</span>
               <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -536,7 +538,7 @@
           </div>
 
           <!-- Item 4 -->
-          <div class="faq-item">
+          <div class="faq-item reveal reveal-up delay-250">
             <button type="button" class="faq-question" aria-expanded="false">
               <span>Como funciona o corte de trechos (Trim) sem re-renderizar?</span>
               <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -560,7 +562,7 @@
        ======================================================================== -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-top">
+      <div class="footer-top reveal reveal-up">
         <div class="footer-brand-wrap">
           <a href="#" class="brand" aria-label="ClipDrop Início">
             <img src="assets/logos/logo_sem_fundo_com_texto.png" alt="ClipDrop" class="footer-logo" width="130" height="32">
@@ -577,12 +579,19 @@
         </nav>
       </div>
 
-      <div class="footer-bottom">
+      <div class="footer-bottom reveal reveal-up delay-100">
         <p>© 2026 ClipDrop. Desenvolvido por <a href="https://github.com/andreluizdasilvaa" target="_blank" rel="noopener noreferrer">@andreVsemR</a>.</p>
         <p>Este software é destinado apenas para arquivamento e uso em conformidade com as leis de direitos autorais aplicáveis.</p>
       </div>
     </div>
   </footer>
+
+  <!-- Botão Flutuante Voltar ao Topo -->
+  <button type="button" class="scroll-to-top" id="scroll-to-top" aria-label="Voltar ao início da página">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
 
   <!-- Toast de Download Iniciado -->
   <div class="download-toast" id="download-toast" role="status" aria-live="polite">

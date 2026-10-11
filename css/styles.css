@@ -397,7 +397,8 @@ p {
   padding: 6px 0;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--ink);
 }
 
@@ -412,7 +413,8 @@ p {
   transition: width var(--transition-fast);
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
   width: 100%;
 }
 
@@ -1246,3 +1248,149 @@ p {
     align-items: flex-start;
   }
 }
+
+/* ==========================================================================
+   15. Animações de Scroll Modernas & Clean
+   ========================================================================== */
+
+/* Barra de Progresso de Leitura/Scroll no Topo */
+.scroll-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2.5px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent) 0%, #ff4b4b 60%, var(--support) 100%);
+  pointer-events: none;
+  z-index: 102;
+  box-shadow: 0 0 10px rgba(244, 0, 0, 0.45);
+  transition: width 0.08s ease-out;
+}
+
+/* Base de Revelação com Progressive Enhancement (somente oculta se JS estiver ativo) */
+html.has-js .reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition-property: opacity, transform;
+  transition-duration: 0.7s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Variações direcionais de revelação */
+html.has-js .reveal-up {
+  transform: translateY(28px);
+}
+
+html.has-js .reveal-down {
+  transform: translateY(-28px);
+}
+
+html.has-js .reveal-left {
+  transform: translateX(-32px);
+}
+
+html.has-js .reveal-right {
+  transform: translateX(32px);
+}
+
+html.has-js .reveal-scale {
+  transform: scale(0.94) translateY(16px);
+}
+
+html.has-js .reveal-fade {
+  transform: none;
+}
+
+/* Estado Ativado / Revelado ao entrar na viewport */
+html.has-js .reveal.is-revealed {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Delays escalonados para listas, grids e cartões sequenciais */
+html.has-js .delay-50  { transition-delay: 50ms; }
+html.has-js .delay-100 { transition-delay: 100ms; }
+html.has-js .delay-150 { transition-delay: 150ms; }
+html.has-js .delay-200 { transition-delay: 200ms; }
+html.has-js .delay-250 { transition-delay: 250ms; }
+html.has-js .delay-300 { transition-delay: 300ms; }
+html.has-js .delay-350 { transition-delay: 350ms; }
+html.has-js .delay-400 { transition-delay: 400ms; }
+html.has-js .delay-500 { transition-delay: 500ms; }
+
+/* Botão Flutuante Voltar ao Topo */
+.scroll-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--ink);
+  border: var(--border-subtle);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+  transition: opacity var(--transition-normal), transform var(--transition-normal), visibility var(--transition-normal), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+  z-index: 95;
+  cursor: pointer;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-to-top:hover {
+  background-color: #FFFFFF;
+  border-color: rgba(244, 0, 0, 0.4);
+  color: var(--accent);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-lg), 0 4px 16px rgba(244, 0, 0, 0.12);
+}
+
+.scroll-to-top:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.scroll-to-top svg {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--transition-fast);
+}
+
+.scroll-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+/* Suporte Acessível para Usuários com Redução de Movimento */
+@media (prefers-reduced-motion: reduce) {
+  html.has-js .reveal,
+  html.has-js .reveal-up,
+  html.has-js .reveal-down,
+  html.has-js .reveal-left,
+  html.has-js .reveal-right,
+  html.has-js .reveal-scale,
+  html.has-js .reveal-fade {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .scroll-progress-bar {
+    display: none !important;
+  }
+
+  .scroll-to-top {
+    transition: opacity var(--transition-fast) !important;
+  }
+}
+

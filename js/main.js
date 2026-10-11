@@ -1,6 +1,13 @@
+// Ativa a flag has-js imediatamente para suportar as animações de scroll
+document.documentElement.classList.add('has-js');
+
 document.addEventListener('DOMContentLoaded', () => {
   initDownloadConfig();
   initHeaderScroll();
+  initScrollReveal();
+  initScrollProgressBar();
+  initScrollSpy();
+  initScrollToTop();
   initFaqAccordion();
   initDownloadFeedback();
   initSmoothScroll();
@@ -152,3 +159,133 @@ function initSmoothScroll() {
     });
   });
 }
+
+/**
+ * 6. Animações de Revelação no Scroll (Intersection Observer)
+ */
+function initScrollReveal() {
+  const revealElements = document.querySelectorAll('.reveal');
+  if (!revealElements.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    // Fallback gracioso para navegadores legados
+    revealElements.forEach(el => el.classList.add('is-revealed'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.08
+  });
+
+  revealElements.forEach(el => {
+    observer.observe(el);
+  });
+}
+
+/**
+ * 7. Barra de Progresso de Scroll/Leitura no Topo
+ */
+function initScrollProgressBar() {
+  const progressBar = document.getElementById('scroll-progress');
+  if (!progressBar) return;
+
+  let ticking = false;
+
+  const updateProgress = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateProgress);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', updateProgress, { passive: true });
+  updateProgress();
+}
+
+/**
+ * 8. Destaque automático de item ativo no menu ao rolar a página (Scrollspy)
+ */
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  if (!sections.length || !navLinks.length) return;
+
+  const handleScrollspy = () => {
+    const scrollPosition = (window.scrollY || document.documentElement.scrollTop) + 120;
+    let currentId = '';
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollPosition >= top && scrollPosition < top + height) {
+        currentId = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (currentId && href === `#${currentId}`) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  };
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScrollspy();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  handleScrollspy();
+}
+
+/**
+ * 9. Botão Flutuante Voltar ao Topo
+ */
+function initScrollToTop() {
+  const scrollTopBtn = document.getElementById('scroll-to-top');
+  if (!scrollTopBtn) return;
+
+  const toggleBtnVisibility = () => {
+    if (window.scrollY > 380) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  };
+
+  window.addEventListener('scroll', toggleBtnVisibility, { passive: true });
+  toggleBtnVisibility();
+
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
