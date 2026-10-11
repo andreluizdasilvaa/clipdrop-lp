@@ -321,6 +321,7 @@ function initMobileNav() {
     backdrop.classList.add('is-active');
     backdrop.setAttribute('aria-hidden', 'false');
     if (header) header.classList.add('menu-open');
+    document.documentElement.classList.add('mobile-menu-active');
     document.body.classList.add('mobile-menu-active');
   };
 
@@ -332,6 +333,7 @@ function initMobileNav() {
     backdrop.classList.remove('is-active');
     backdrop.setAttribute('aria-hidden', 'true');
     if (header) header.classList.remove('menu-open');
+    document.documentElement.classList.remove('mobile-menu-active');
     document.body.classList.remove('mobile-menu-active');
   };
 
@@ -344,16 +346,46 @@ function initMobileNav() {
     }
   };
 
-  toggleBtn.addEventListener('click', toggleMenu);
-  backdrop.addEventListener('click', closeMenu);
+  toggleBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleMenu();
+  });
 
+  // Fecha ao clicar no fundo escuro (backdrop)
+  backdrop.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeMenu();
+  });
+
+  // Impede rolagem de toque no fundo enquanto o menu estiver aberto
+  backdrop.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+  }, { passive: false });
+
+  // Fecha o menu e rola suavemente até o destino ao clicar em qualquer item
   mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
       closeMenu();
+
+      if (href && href.startsWith('#') && href !== '#') {
+        const targetEl = document.querySelector(href);
+        if (targetEl) {
+          e.preventDefault();
+          // Aguarda o destravamento do scroll da tela antes de navegar suavemente
+          setTimeout(() => {
+            targetEl.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }, 80);
+        }
+      }
     });
   });
 
-  // Fecha com a tecla Escape para total conformidade de acessibilidade
+  // Fecha com a tecla Escape para acessibilidade
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
       closeMenu();
