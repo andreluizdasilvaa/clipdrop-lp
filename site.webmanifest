@@ -1,0 +1,27 @@
+{
+  "name": "ClipDrop — Interface Desktop de mídia",
+  "short_name": "ClipDrop",
+  "description": "Interface desktop moderna para extração e conversão de áudio e vídeo com yt-dlp e FFmpeg em modo Zero-Config.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#FCF7FF",
+  "theme_color": "#FCF7FF",
+  "icons": [
+    {
+      "src": "assets/logos/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logos/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logos/logo_sem_fundo_sem_texto.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
